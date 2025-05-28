@@ -1,16 +1,37 @@
 from flask import Flask, jsonify, request
 import os
+import pymqi
 from flask import Flask
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
+queue_manager = 'QM_NAME'  # Replace with your queue manager name
+channel = 'CHANNEL_NAME'  # Replace with your channel name
+host = 'MQ_SERVER_HOST'  # Replace with your MQ server host
+port = 'MQ_SERVER_PORT'  # Replace with your MQ server port
+queue_name = 'QUEUE_NAME'  # Replace with your queue name
+message = 'Hello, MQ!'
 
 @app.route("/")
 def hello():
     return "Jayant : Hello World!"
 
+@app.route("/msg", method=["GET","POST"])
+def msg():
+    conn_info = '%s(%s)' % (host, port)
+
+    try:
+        qmgr = pymqi.connect(queue_manager, channel, conn_info)
+        queue = pymqi.Queue(qmgr, queue_name)
+        queue.put(message)
+        print(f"Message sent to queue {queue_name}")
+        queue.close()
+        qmgr.disconnect()
+    except pymqi.MQMIError as e:
+        print(f"Error: {e}")
+    return "Jayant : Hello Msg!"
 
 @app.route("/res", methods=["GET"])
 def res():
