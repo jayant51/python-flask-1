@@ -5,10 +5,10 @@ EXPOSE 8081/tcp
 ENV FLASK_PORT=8081
 
 # Update package lists
-RUN apt-get update
+#RUN apt-get update
 
 # Install Python 3 and pip
-RUN apt-get install -y python3 python3-pip
+RUN apk add --update install -y python3 python3-pip
 
 # Set the working directory in the container
 WORKDIR /projects
