@@ -8,7 +8,7 @@ ENV FLASK_PORT=8081
 #RUN apt-get update
 
 # Install Python 3 and pip
-RUN apk add --update install -y python3 python3-pip
+RUN dnf -y install python3 python3-pip
 
 # Set the working directory in the container
 WORKDIR /projects
