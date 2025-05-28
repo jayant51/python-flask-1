@@ -1,3 +1,4 @@
+pip==25.1.1
 Flask==2.3.3
 Flask-Cors==5.0.0
-pymqi==1.12.10
+pymqi==1.12.11
