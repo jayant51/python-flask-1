@@ -7,11 +7,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-queue_manager = 'QM_NAME'  # Replace with your queue manager name
-channel = 'CHANNEL_NAME'  # Replace with your channel name
-host = 'MQ_SERVER_HOST'  # Replace with your MQ server host
-port = 'MQ_SERVER_PORT'  # Replace with your MQ server port
-queue_name = 'QUEUE_NAME'  # Replace with your queue name
+queue_manager = 'qm-dev'  # Replace with your queue manager name
+channel = 'ACEMQCLIENT'  # Replace with your channel name
+host = 'qm-dev-ibm-mq'  # Replace with your MQ server host
+port = ‘1414’  # Replace with your MQ server port
+queue_name = 'BACKEND'  # Replace with your queue name
 message = 'Hello, MQ!'
 
 @app.route("/")
